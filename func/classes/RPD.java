@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode.func.classes;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.modules.IMU;
 import org.firstinspires.ftc.teamcode.func.classes.PD;
 import org.firstinspires.ftc.teamcode.modules.Wheelbase;
@@ -9,6 +12,7 @@ import org.firstinspires.ftc.teamcode.modules.Wheelbase;
 @Config
 public class RPD extends IMU {
     PD pd;
+    Wheelbase wb;
     public static double kp;
     public static double kd;
     double ErLast;
@@ -18,10 +22,15 @@ public class RPD extends IMU {
         pd.kp = kp;
         pd.kd = kd;
         pd.init();
-        ErLast = 0;
 
+        wb = new Wheelbase();
+        wb.initFields(telemetry, L, hwmp);
+        wb.init();
+        ErLast = 0;
     }
-    public void move(double degrees) {
+    Telemetry telemetry; LinearOpMode L; HardwareMap hwmp;
+    public void initFields(Telemetry telemetry, LinearOpMode L, HardwareMap hwmp) { this.telemetry = telemetry; this.L = L; this.hwmp = hwmp; }
+    public void rotate(double degrees) {
 
         double PD = 0;
         while (ERROR > 1) {
@@ -34,9 +43,6 @@ public class RPD extends IMU {
             }
             PD = P + D;
         }
-        LF.setPower(PD);
-        LB.setPower(PD);
-        RF.setPower(PD);
-        RB.setPower(PD);
+        wb.setMtPower(PD, PD, -PD, -PD);
     }
 }

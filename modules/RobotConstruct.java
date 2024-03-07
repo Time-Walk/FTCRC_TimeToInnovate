@@ -16,6 +16,7 @@ public class RobotConstruct extends Robot {
     Neon neon;
     Grab grab;
     IMU imu;
+    RPD rpd;
 
     @Override
     public void init() {
@@ -43,6 +44,9 @@ public class RobotConstruct extends Robot {
         imu.initFields(telemetry, L, hwmp);
         imu.init();
 
+        rpd = new RPD();
+        rpd.initFields(telemetry, L, hwmp);
+        rpd.init();
     }
 
     @Override
