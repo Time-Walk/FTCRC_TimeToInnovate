@@ -14,6 +14,7 @@ public class RobotConstruct extends Robot {
     Drone sm;
     Neon neon;
     Grab grab;
+    IMU imu;
     @Override
     public void init() {
         cameraOut = new CameraOut();
@@ -35,6 +36,10 @@ public class RobotConstruct extends Robot {
         grab = new Grab();
         grab.initFields(telemetry, L, hwmp);
         grab.init();
+
+        imu = new IMU();
+        imu.initFields(telemetry, L, hwmp);
+        imu.init();
     }
 
     @Override
