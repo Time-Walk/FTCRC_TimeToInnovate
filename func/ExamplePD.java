@@ -14,8 +14,7 @@ public class ExamplePD {
         pd.kp = EXkp;
         pd.kd = EXkd;
         pd.init();
-    }
-    void move() {
+    }    void move() {
         while ( 1 > .1 ) {
             double pw = pd.tick(0.1);
         }
