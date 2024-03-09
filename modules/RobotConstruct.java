@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.func.classes.RPD;
+import org.firstinspires.ftc.teamcode.func.teleop.WheelBaseDrive;
 import org.firstinspires.ftc.teamcode.modules.camera.CameraOut;
 
 @Config
@@ -18,6 +19,7 @@ public class RobotConstruct extends Robot {
     IMU imu;
     RPD rpd;
     driverHelper dh;
+    WheelBaseDrive wbd;
 
     @Override
     public void init() {
@@ -52,6 +54,10 @@ public class RobotConstruct extends Robot {
         dh = new driverHelper();
         dh.initFields(telemetry, L, hwmp);
         dh.init();
+
+        wbd = new WheelBaseDrive();
+        wbd.initFields(telemetry, L, hwmp);
+        wbd.init();
     }
 
     @Override

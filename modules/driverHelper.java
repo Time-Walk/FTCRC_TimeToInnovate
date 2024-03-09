@@ -28,6 +28,11 @@ public class driverHelper {
         this.gamepad1 = gamepad1;
     }
     public void init() {
+        rpd = new RPD();
+        rpd.initFields(telemetry, L, hwmp);
+        rpd.init();
+    }
+    public void dh() {
         if (gamepad1.x) {
             rpd.rotate(90);
         } else if (gamepad1.b) {
