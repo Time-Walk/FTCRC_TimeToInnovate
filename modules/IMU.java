@@ -17,7 +17,7 @@ public class IMU {
     BNO055IMU imu;
     Telemetry telemetry; LinearOpMode L; HardwareMap hwmp;
     public void initFields(Telemetry telemetry, LinearOpMode L, HardwareMap hwmp) { this.telemetry = telemetry; this.L = L; this.hwmp = hwmp; }
-    void init() { //Инициализация:
+    public void init() { //Инициализация:
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters(); // инициализация Акселерометра
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;

@@ -13,7 +13,7 @@ public abstract class Robot {
     LinearOpMode L;
     HardwareMap hwmp;
 
-    void gamepad_init(Gamepad gamepad1, Gamepad gamepad2) { //Инициализация геймпадов
+    public void gamepad_init(Gamepad gamepad1, Gamepad gamepad2) { //Инициализация геймпадов
         this.gamepad1 = gamepad1;
         this.gamepad2 = gamepad2;
 

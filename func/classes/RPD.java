@@ -10,8 +10,9 @@ import org.firstinspires.ftc.teamcode.func.classes.PD;
 import org.firstinspires.ftc.teamcode.modules.Wheelbase;
 
 @Config
-public class RPD extends IMU {
+public class RPD {
     PD pd;
+    IMU imu;
     Wheelbase wb;
     public static double kp;
     public static double kd;
@@ -22,6 +23,10 @@ public class RPD extends IMU {
         pd.kp = kp;
         pd.kd = kd;
         pd.init();
+
+        imu = new IMU();
+        imu.initFields(telemetry, L, hwmp);
+        imu.init();
 
         wb = new Wheelbase();
         wb.initFields(telemetry, L, hwmp);
@@ -37,7 +42,7 @@ public class RPD extends IMU {
             double P = ERROR * kp;
             double D = kd * (ERROR - ErLast);
             ErLast = ERROR;
-            ERROR = degrees - getAngle();
+            ERROR = degrees - imu.getAngle();
             if (D > P) {
                 D = P;
             }
