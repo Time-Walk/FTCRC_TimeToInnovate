@@ -47,7 +47,8 @@ public class RPD {
                 D = P;
             }
             PD = P + D;
+            wb.setMtPower(PD, PD, -PD, -PD);
         }
-        wb.setMtPower(PD, PD, -PD, -PD);
+        wb.setMtZero();
     }
 }
