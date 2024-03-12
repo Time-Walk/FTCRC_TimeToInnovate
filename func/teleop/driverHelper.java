@@ -14,11 +14,11 @@ import org.firstinspires.ftc.teamcode.modules.Wheelbase;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class driverHelper {
+public class driverHelper{
     Telemetry telemetry;
     LinearOpMode L;
     HardwareMap hwmp;
-    Gamepad gamepad1;
+    Gamepad gamepad1 ;
     RR rr;
     public void initFields(Telemetry telemetry, LinearOpMode L, HardwareMap hwmp) {
         this.telemetry = telemetry;

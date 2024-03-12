@@ -8,8 +8,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public abstract class Robot {
     Telemetry telemetry; //Создование всех переменных
-    Gamepad gamepad1;
-    Gamepad gamepad2;
+    public Gamepad gamepad1;
+    public Gamepad gamepad2;
     LinearOpMode L;
     HardwareMap hwmp;
 
