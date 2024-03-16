@@ -16,7 +16,7 @@ public class ExamplePD {
         pd.init();
     }
     void move() {
-        while ( 1 > .1 ) {
+        while (1 > .1) {
             double pw = pd.tick(0.1);
         }
     }
