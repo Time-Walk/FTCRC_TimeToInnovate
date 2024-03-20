@@ -1,14 +1,10 @@
 package org.firstinspires.ftc.teamcode.modules;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.modules.superclasses.Module;
 
-public class Grab {
-    Telemetry telemetry; LinearOpMode L; HardwareMap hwmp;
-    public void initFields(Telemetry telemetry, LinearOpMode L, HardwareMap hwmp) { this.telemetry = telemetry; this.L = L; this.hwmp = hwmp; }
+public class Grab extends Module {
 
     DcMotor RZ, LZ;
     public void init() {
@@ -18,5 +14,9 @@ public class Grab {
     public void setPower(double pw) { // положительное - загреб, отрицательное - выгреб
         RZ.setPower(pw);
         LZ.setPower(-pw);
+    }
+    public void tele() {
+        setPower(gamepad2.right_trigger);
+        setPower(-gamepad2.left_trigger);
     }
 }

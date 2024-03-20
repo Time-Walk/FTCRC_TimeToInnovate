@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.modules.IMU;
-import org.firstinspires.ftc.teamcode.func.classes.PD;
+import org.firstinspires.ftc.teamcode.func.classes.superclasses.PD;
 import org.firstinspires.ftc.teamcode.modules.Wheelbase;
 
 @Config
@@ -16,6 +16,8 @@ public class RPD {
     Wheelbase wb;
     public static double kp;
     public static double kd;
+    public static double ErTarget;
+    public static double ErSpeedTarget;
     double ErLast;
     double ERROR;
     public void init() {

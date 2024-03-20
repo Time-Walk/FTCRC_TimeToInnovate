@@ -1,22 +1,16 @@
 package org.firstinspires.ftc.teamcode.modules;
-import static com.qualcomm.hardware.bosch.BNO055IMU.AngleUnit.DEGREES;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import org.firstinspires.ftc.teamcode.modules.superclasses.Module;
 
-public class IMU {
+public class IMU extends Module {
     BNO055IMU imu;
-    Telemetry telemetry; LinearOpMode L; HardwareMap hwmp;
-    public void initFields(Telemetry telemetry, LinearOpMode L, HardwareMap hwmp) { this.telemetry = telemetry; this.L = L; this.hwmp = hwmp; }
     public void init() { //Инициализация:
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters(); // инициализация Акселерометра
@@ -29,11 +23,7 @@ public class IMU {
         imu = hwmp.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
         while (!imu.isGyroCalibrated()) { //Калибровка акселерометра
-            try {
-                Thread.sleep(30);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
+            delay(30);
             telemetry.addData("Wait", "Calibration"); //Сообщение о калибровке
             telemetry.update();
         }

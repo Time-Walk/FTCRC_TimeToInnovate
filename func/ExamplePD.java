@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.func;
 
 import com.acmerobotics.dashboard.config.Config;
 
-import org.firstinspires.ftc.teamcode.func.classes.PD;
+import org.firstinspires.ftc.teamcode.func.classes.superclasses.PD;
 
 @Config
 public class ExamplePD {

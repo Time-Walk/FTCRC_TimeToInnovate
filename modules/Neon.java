@@ -2,20 +2,16 @@ package org.firstinspires.ftc.teamcode.modules;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.modules.superclasses.Module;
 
-public class Neon {
-    Telemetry telemetry; LinearOpMode L; HardwareMap hwmp;
-    Gamepad gamepad1;
-    public void initFields(Telemetry telemetry, LinearOpMode L, HardwareMap hwmp) { this.telemetry = telemetry; this.L = L; this.hwmp = hwmp; }
-    public void initGamepad(Gamepad gamepad1) { this.gamepad1 = gamepad1; }
-
+public class Neon extends Module {
     DcMotor NE;
     String NeState;
-    void init() {
+    @Override
+    public void init() {
         NE = hwmp.get(DcMotor.class, "NE");
         NeState = "Hold";
     }

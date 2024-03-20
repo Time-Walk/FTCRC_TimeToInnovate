@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.func.classes;
+package org.firstinspires.ftc.teamcode.func.classes.superclasses;
 
 public class PD {
     public double kp;
