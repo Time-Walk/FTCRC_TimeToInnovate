@@ -11,7 +11,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.modules.IMU;
 import org.firstinspires.ftc.teamcode.modules.Wheelbase;
 
-public class RR extends IMU {
+public class RR {
     Telemetry telemetry;
     LinearOpMode L;
     HardwareMap hwmp;
@@ -27,6 +27,7 @@ public class RR extends IMU {
         this.gamepad1 = gamepad1;
     }
     Wheelbase wb;
+    IMU imu;
     double kr = 0.2;
     double ERROR;
     double R = 0;
@@ -35,14 +36,18 @@ public class RR extends IMU {
         wb = new Wheelbase();
         wb.initFields(telemetry, L, hwmp);
         wb.init();
+
+        imu = new IMU();
+        imu.initFields(telemetry, L, hwmp);
+        imu.init();
     }
 
     public void rotate(double degrees) {
-        if (gamepad1.x || gamepad1.b) {
-            ERROR = degrees - getAngle();
-            R = Math.signum(ERROR) * kr;
-        }
+        imu.init();
+        ERROR = 2;
         while (ERROR>1) {
+            ERROR = degrees - imu.getAngle();
+            R = Math.signum(ERROR) * kr;
             wb.setMtPower(R, R, -R, -R);
         } wb.setMtZero();
     }

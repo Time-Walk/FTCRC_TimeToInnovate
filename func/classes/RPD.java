@@ -38,7 +38,7 @@ public class RPD {
     Telemetry telemetry; LinearOpMode L; HardwareMap hwmp;
     public void initFields(Telemetry telemetry, LinearOpMode L, HardwareMap hwmp) { this.telemetry = telemetry; this.L = L; this.hwmp = hwmp; }
     public void rotate(double degrees) {
-
+        ERROR = 2;
         double PD = 0;
         while (ERROR > 1) {
             double P = ERROR * kp;
