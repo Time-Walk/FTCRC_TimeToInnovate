@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.func.classes.superclasses.PD;
 import org.firstinspires.ftc.teamcode.modules.IMU;
 import org.firstinspires.ftc.teamcode.modules.Wheelbase;
 import org.firstinspires.ftc.teamcode.modules.superclasses.RobotConstruct;
@@ -15,22 +16,74 @@ public class DRP {
     LinearOpMode L;
     HardwareMap hwmp;
     RobotConstruct R;
-    public static double kp;
-    public static double ka;
-    public static double meh;
+    PD pdX, pdY, pdRot;
+    public static double kpXY;
+    public static double kdXY;
+    public static double kpRot;
+    public static double kdRot;
+    public static double krAccel;
+    public static double kpAccel;
+    public static double minTargetErDist;
+    public static double minErSpeed;
+    public static double maxRotationDelta;
     public void init(RobotConstruct R) {
         this.R = R;
+        pdX = new PD();
+        pdY = new PD();
+        pdRot = new PD();
+        pdX.init(kpXY, kdXY);
+        pdY.init(kpXY, kdXY);
+        pdRot.init(kpRot, kdRot);
     }
-    public void go(double tick) {
-        boolean wuh =  true;
+    public void go(double targetX, double targetY) {
         R.imu.init();
-        double sa = R.imu.getAngle();
         R.wb.resetEncoders();
-        while(Math.abs(tick - R.wb.LF.getCurrentPosition()) > meh) {
-            double LErr = tick - R.wb.LF.getCurrentPosition();
-            double RErr = tick - R.wb.RF.getCurrentPosition();
-        }
+        boolean condSumm = false;
+        boolean condX = false;
+        boolean condY = false;
+        while ( !condSumm ) {
 
+            double Ux = 0;
+            double Uy = 0;
+
+            if ( !condX ) {
+                double XEr = targetX - R.wb.LF.getCurrentPosition();
+                if ( XEr > targetX / 2) {
+                    double Rele = krAccel * Math.signum(XEr);
+                    double P = kpAccel * Math.abs(targetX - XEr) * Math.signum(targetX);
+                    Ux = Rele + P;
+                }
+                else {
+                    Ux = pdX.tick(XEr);
+                }
+                if ( Math.abs( targetX - XEr ) < minTargetErDist && Math.abs(XEr - pdX.ErLast) < minErSpeed ) {
+                    condX = true;
+                }
+            }
+
+            if ( !condY ) {
+                double YEr = targetY - R.wb.RF.getCurrentPosition();
+                if ( YEr > targetY / 2) {
+                    double Rele = krAccel * Math.signum(YEr);
+                    double P = kpAccel * Math.abs(targetY - YEr) * Math.signum(targetY);
+                    Uy = Rele + P;
+                }
+                else {
+                    Uy = pdY.tick(YEr);
+                }
+                if ( Math.abs( targetY - YEr ) < minTargetErDist && Math.abs(YEr - pdY.ErLast) < minErSpeed ) {
+                    condY = true;
+                }
+            }
+
+            double ErRot = -R.imu.getAngle();
+            double URot = pdRot.tick(ErRot);
+
+            condSumm = condX && condY && ( Math.abs(ErRot) < maxRotationDelta );
+
+            R.wb.setMtPower(Ux + URot, Uy+URot, Uy+URot, Ux+URot);
+
+        }
 
     }
 
