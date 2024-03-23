@@ -25,4 +25,12 @@ abstract public class Module {
             Thread.currentThread().interrupt();
         }
     }
+    public void advancedDelay(long millis, int nanos) {
+        try {
+            Thread.sleep(millis, nanos);
+        }
+        catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
 }
