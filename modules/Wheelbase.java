@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.modules.superclasses.Module;
 
 public class Wheelbase extends Module {
-    DcMotor RF, RB, LF, LB;
+    public DcMotor RF, RB, LF, LB;
 
     public void init() {
         LF = hwmp.get(DcMotor.class, "LF");
@@ -24,6 +24,12 @@ public class Wheelbase extends Module {
         LB.setPower(lb);
         RF.setPower(rf);
         RB.setPower(rb);
+    }
+    public void resetEncoders() {
+        LF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        LF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void setMtZero() { setMtPower(0, 0, 0, 0); }
