@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.modules.superclasses.Module;
 public class NewNeon extends Module {
     DigitalChannel LEDL, LEDR;
     public static int LED_COUNT_L, LED_COUNT_R;
-    int[][] LedL, LedR;
+    public int[][] LedL, LedR;
     boolean _send = false;
     public void init() {
         LEDL = hwmp.get(DigitalChannel.class, "LEDL");
