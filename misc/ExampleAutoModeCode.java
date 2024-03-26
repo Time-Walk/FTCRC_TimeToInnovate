@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode.misc;
+package org.firstinspires.ftc.teamcode.misc;//package org.firstinspires.ftc.teamcode.scenes.auto;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.modules.superclasses.RobotConstruct;
 
 //@Autonomous(name="AutoName", group="")
-public class ExampleAutoModeCode extends LinearOpMode { //YOU SHOULD CHANGE HERE TO YOUR FILE NAME
+public class ExampleAutoModeCode extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         RobotConstruct R = new RobotConstruct();

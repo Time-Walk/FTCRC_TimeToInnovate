@@ -81,8 +81,16 @@ public class DRP {
 
             condSumm = condX && condY && ( Math.abs(ErRot) < maxRotationDelta );
 
-            R.wb.setMtPower(Ux + URot, Uy+URot, Uy+URot, Ux+URot);
+            R.wb.setMtPower(Ux + URot, Uy+URot, -Uy+URot, -Ux+URot);
 
+            telemetry.addData("Ux", Ux);
+            telemetry.addData("Uy", Uy);
+            telemetry.addData("Urot", URot);
+            telemetry.addData("lf", R.wb.LF.getPower());
+            telemetry.addData("lb", R.wb.LB.getPower());
+            telemetry.addData("rf", R.wb.RF.getPower());
+            telemetry.addData("rb", R.wb.RB.getPower());
+            telemetry.update();
         }
 
     }

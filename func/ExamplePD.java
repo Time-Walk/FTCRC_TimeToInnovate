@@ -11,9 +11,7 @@ public class ExamplePD {
     public static double EXkd = .1;
     void init() {
         pd = new PD();
-        pd.kp = EXkp;
-        pd.kd = EXkd;
-        pd.init();
+        pd.init(EXkp, EXkd);
     }
     void move() {
         while (1 > .1) {
