@@ -24,9 +24,9 @@ public class DRP {
     public static double kdRot;
     public static double krAccel;
     public static double kpAccel;
-    public static double minTargetErDist;
-    public static double minErSpeed;
-    public static double maxRotationDelta;
+    public static double minTargetErDist = 5;
+    public static double minErSpeed = 10;
+    public static double maxRotationDelta = 1;
     public void init(RobotConstruct R) {
         this.R = R;
         pdX = new PD();

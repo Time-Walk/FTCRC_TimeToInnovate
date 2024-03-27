@@ -7,15 +7,22 @@ import org.firstinspires.ftc.teamcode.modules.superclasses.Module;
 
 @Config
 public class Drone extends Module {
-    Servo SM;
+    Servo SM, SMA;
     public static double SMFLY = 0.2;
     public static double SMIDLE = 0.7;
+    public static double SMAFLY = 0.2;
+    public static double SMAIDLE = 0.7;
     @Override
     public void init() {
         SM = hwmp.get(Servo.class, "SM");
+        SMA = hwmp.get(Servo.class, "SMA");
     }
     public void fly() {
+        SMA.setPosition(SMAFLY);
+        delay(1000);
         SM.setPosition(SMFLY);
+        delay(200);
+        SMA.setPosition(SMAIDLE);
     }
     public void close() {
         SM.setPosition(SMIDLE);
