@@ -10,6 +10,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.func.classes.RPD;
 import org.firstinspires.ftc.teamcode.func.classes.RR;
 import org.firstinspires.ftc.teamcode.func.teleop.DriverHelper;
+import org.firstinspires.ftc.teamcode.modules.AutoPixels;
 import org.firstinspires.ftc.teamcode.modules.Drone;
 import org.firstinspires.ftc.teamcode.modules.Grab;
 import org.firstinspires.ftc.teamcode.modules.Hanging;
@@ -31,6 +32,7 @@ public class RobotConstruct {
     //public RR rr;
     public Hanging hg;
     public NewNeon led;
+    public AutoPixels ap;
     //public DriverHelper dh;
     public Telemetry telemetry;
     public Gamepad gamepad1, gamepad2;
@@ -43,37 +45,41 @@ public class RobotConstruct {
         this.L = L;
         this.hwmp = hwmp;
 
-        //cameraOut = new CameraOut();
-        //cameraOut.initFields(telemetry, L, hwmp);
-        //cameraOut.init();
+        cameraOut = new CameraOut();
+        cameraOut.initFields(telemetry, L, hwmp);
+        cameraOut.init();
 
         wb = new Wheelbase();
         wb.initFields(telemetry, L, hwmp);
         wb.init();
 
-        //sm = new Drone();
-        //sm.initFields(telemetry, L, hwmp);
-        //sm.init();
+        sm = new Drone();
+        sm.initFields(telemetry, L, hwmp);
+        sm.init();
 
         //neon = new Neon();
         //neon.initFields(telemetry, L, hwmp);
         //neon.init();
 
-       /* grab = new Grab();
+        grab = new Grab();
         grab.initFields(telemetry, L, hwmp);
-        grab.init();*/
+        grab.init();
 
         imu = new IMU();
         imu.initFields(telemetry, L, hwmp);
         imu.init();
 
-        //hg = new Hanging();
-        //hg.initFields(telemetry, L, hwmp);
-        //hg.init();
+        hg = new Hanging();
+        hg.initFields(telemetry, L, hwmp);
+        hg.init();
 
-        led = new NewNeon();
-        led.initFields(telemetry, L, hwmp);
-        led.init();
+        //led = new NewNeon();
+        //led.initFields(telemetry, L, hwmp);
+        //led.init();
+
+        ap = new AutoPixels();
+        ap.initFields(telemetry, L, hwmp);
+        ap.init();
     }
 
     public void gamepad_init(Gamepad gamepad1, Gamepad gamepad2) {
