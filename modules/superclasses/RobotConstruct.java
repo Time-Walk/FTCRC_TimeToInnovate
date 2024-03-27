@@ -31,7 +31,7 @@ public class RobotConstruct {
     //public RR rr;
     public Hanging hg;
     public NewNeon led;
-    public DriverHelper dh;
+    //public DriverHelper dh;
     public Telemetry telemetry;
     public Gamepad gamepad1, gamepad2;
     public LinearOpMode L;
@@ -71,9 +71,9 @@ public class RobotConstruct {
         //hg.initFields(telemetry, L, hwmp);
         //hg.init();
 
-        //led = new NewNeon();
-        //led.initFields(telemetry, L, hwmp);
-        //led.init();
+        led = new NewNeon();
+        led.initFields(telemetry, L, hwmp);
+        led.init();
     }
 
     public void gamepad_init(Gamepad gamepad1, Gamepad gamepad2) {

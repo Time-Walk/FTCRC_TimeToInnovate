@@ -19,7 +19,7 @@ public class teleOp extends LinearOpMode {
         dh.initGamepad(gamepad1);
         waitForStart();
         while(!isStopRequested()) {
-            R.dh.dh();
+            dh.dh();
             R.wb.tele();
             R.sm.tele();
             R.grab.tele();

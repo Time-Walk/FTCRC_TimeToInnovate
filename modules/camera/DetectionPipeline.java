@@ -58,16 +58,6 @@ public class DetectionPipeline extends OpenCvPipeline {
         Core.extractChannel(frameYCrCb, outputFrame, targetChannelId);
         return outputFrame;
     }
-
-    int countItemInArray(byte[] frame, byte value) {
-        int cnt = 0;
-        for (byte i: frame) {
-            if (i == value) {
-                cnt++;
-            }
-        }
-        return cnt;
-    }
     @Override
     public Mat processFrame(Mat input) {
 

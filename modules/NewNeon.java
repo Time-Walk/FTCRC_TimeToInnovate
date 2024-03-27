@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.modules.superclasses.Module;
 @Config
 public class NewNeon extends Module {
     DigitalChannel LEDL, LEDR;
-    public static int LED_COUNT_L, LED_COUNT_R;
+    public static int LED_COUNT_L = 24, LED_COUNT_R = 24;
     public int[][] LedL, LedR;
     boolean _send = false;
     public void init() {
@@ -18,6 +18,8 @@ public class NewNeon extends Module {
         LEDR.setMode(DigitalChannel.Mode.OUTPUT);
         LedL = new int[LED_COUNT_L][3];
         LedR = new int[LED_COUNT_R][3];
+        telemetry.addData("led", "inited");
+        telemetry.update();
         for (int i=0; i<LED_COUNT_L; i++) {
             LedL[i][0] = 255;
             LedL[i][1] = 255;
@@ -28,6 +30,7 @@ public class NewNeon extends Module {
             LedR[i][1] = 255;
             LedR[i][2] = 255;
         }
+        Sender.run();
     }
 
     public void send() { _send = true; }

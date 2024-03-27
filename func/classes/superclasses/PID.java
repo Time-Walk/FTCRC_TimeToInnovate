@@ -5,18 +5,21 @@ public class PID {
     public double ki;
     public double kd;
     public double Ir, ErLast;
+    public double P;
+    public double I;
+    public double D;
     public void init(double kp, double ki, double kd) {
         Ir = 0;
         ErLast = 0;
         this.kp = kp; this.ki = ki; this.kd = kd;
     }
     public double tick(double Er) {
-        double P = Er * kp;
+        P = Er * kp;
 
         Ir += Er;
-        double I = Ir * ki;
+        I = Ir * ki;
 
-        double D = kd * (Er - ErLast);
+        D = kd * (Er - ErLast);
         ErLast = Er;
         if ( D > P ) { D = P; }
 

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.func.classes;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -34,6 +35,7 @@ public class DRP {
         pdX.init(kpXY, kdXY);
         pdY.init(kpXY, kdXY);
         pdRot.init(kpRot, kdRot);
+        telemetry = FtcDashboard.getInstance().getTelemetry();
     }
     public void go(double targetX, double targetY) {
         R.imu.init();
