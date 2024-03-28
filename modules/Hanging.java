@@ -12,8 +12,10 @@ import org.firstinspires.ftc.teamcode.modules.superclasses.Module;
 
 @Config
 public class Hanging extends Module {
-    public static double HSOpen = 1;
-    public static double HSClose = 0;
+    public static double HSLOpen = 1;
+    public static double HSLClose = 0.7;
+    public static double HSRClose = .23456789;
+    public static double HSROpen = 0;
     DcMotor HR, HL;
     Servo HRS, HLS;
     public void init() {
@@ -41,11 +43,11 @@ public class Hanging extends Module {
         else if (gamepad2.x) {
             onm();
         } else if (gamepad2.y) {
-            HRS.setPosition(HSOpen);
-            HLS.setPosition(HSClose);
+            HRS.setPosition(HSROpen);
+            HLS.setPosition(HSLOpen);
         } else if (gamepad2.b) {
-            HRS.setPosition(HSClose);
-            HLS.setPosition(HSOpen);
+            HRS.setPosition(HSRClose);
+            HLS.setPosition(HSLClose);
         }
         else {
             off();
