@@ -21,13 +21,14 @@ public class Drone extends Module {
         SMA.setPosition(SMAFLY);
         delay(1000);
         SM.setPosition(SMFLY);
-        delay(200);
+        delay(2000);
         SMA.setPosition(SMAIDLE);
     }
     public void close() {
         SM.setPosition(SMIDLE);
     }
     public void tele() {
-        if ( gamepad2.dpad_up ) { fly(); }
+        if ( gamepad2.dpad_up ) { fly(); telemetry.addData("123", 123); telemetry.update();}
+        else if (gamepad2.dpad_down) {close();}
     }
 }

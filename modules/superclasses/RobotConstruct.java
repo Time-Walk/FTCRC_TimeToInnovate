@@ -73,9 +73,9 @@ public class RobotConstruct {
         hg.initFields(telemetry, L, hwmp);
         hg.init();
 
-        //led = new NewNeon();
-        //led.initFields(telemetry, L, hwmp);
-        //led.init();
+        led = new NewNeon();
+        led.initFields(telemetry, L, hwmp);
+        led.init();
 
         ap = new AutoPixels();
         ap.initFields(telemetry, L, hwmp);

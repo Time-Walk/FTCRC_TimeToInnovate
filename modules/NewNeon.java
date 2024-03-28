@@ -7,7 +7,8 @@ import org.firstinspires.ftc.teamcode.modules.superclasses.Module;
 
 @Config
 public class NewNeon extends Module {
-    DigitalChannel LEDL, LEDR;
+    public DigitalChannel LEDL;
+    DigitalChannel LEDR;
     public static int LED_COUNT_L = 24, LED_COUNT_R = 24;
     public int[][] LedL, LedR;
     boolean _send = false;
