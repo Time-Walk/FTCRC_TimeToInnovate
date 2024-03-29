@@ -18,15 +18,15 @@ public class DRP {
     HardwareMap hwmp;
     RobotConstruct R;
     PD pdX, pdY, pdRot;
-    public static double kpXY;
-    public static double kdXY;
-    public static double kpRot;
-    public static double kdRot;
-    public static double krAccel;
-    public static double kpAccel;
+    public static double kpXY = .005;
+    public static double kdXY = .0005;
+    public static double kpRot = -.0032;
+    public static double kdRot = -.0484345;
+    public static double krAccel = .079876543;
+    public static double kpAccel = .00085;
     public static double minTargetErDist = 5;
-    public static double minErSpeed = 10;
-    public static double maxRotationDelta = 1;
+    public static double minErSpeed = .5;
+    public static double maxRotationDelta = 100;
     public void init(RobotConstruct R) {
         this.R = R;
         pdX = new PD();
@@ -36,6 +36,14 @@ public class DRP {
         pdY.init(kpXY, kdXY);
         pdRot.init(kpRot, kdRot);
         telemetry = FtcDashboard.getInstance().getTelemetry();
+        telemetry.addData("Ux", 0);
+        telemetry.addData("Uy", 0);
+        telemetry.addData("Urot", 0);
+        telemetry.addData("lf", R.wb.LF.getPower());
+        telemetry.addData("lb", R.wb.LB.getPower());
+        telemetry.addData("rf", R.wb.RF.getPower());
+        telemetry.addData("rb", R.wb.RB.getPower());
+        telemetry.update();
     }
     public void go(double targetX, double targetY) {
         R.imu.init();
@@ -49,7 +57,7 @@ public class DRP {
             double Uy = 0;
 
             if ( !condX ) {
-                double XEr = targetX - R.wb.LF.getCurrentPosition();
+                double XEr = targetX + R.wb.RB.getCurrentPosition();
                 if ( XEr > targetX / 2) {
                     double Rele = krAccel * Math.signum(XEr);
                     double P = kpAccel * Math.abs(targetX - XEr) * Math.signum(targetX);
@@ -64,7 +72,7 @@ public class DRP {
             }
 
             if ( !condY ) {
-                double YEr = targetY - R.wb.RF.getCurrentPosition();
+                double YEr = targetY + R.wb.LB.getCurrentPosition();
                 if ( YEr > targetY / 2) {
                     double Rele = krAccel * Math.signum(YEr);
                     double P = kpAccel * Math.abs(targetY - YEr) * Math.signum(targetY);
@@ -92,6 +100,7 @@ public class DRP {
             telemetry.addData("lb", R.wb.LB.getPower());
             telemetry.addData("rf", R.wb.RF.getPower());
             telemetry.addData("rb", R.wb.RB.getPower());
+            telemetry.addData("ErX", targetX + R.wb.RB.getCurrentPosition());
             telemetry.update();
         }
 

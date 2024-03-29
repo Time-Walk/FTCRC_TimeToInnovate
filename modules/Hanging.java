@@ -37,20 +37,25 @@ public class Hanging extends Module {
         HL.setPower(0);
     }
     public void tele() {
-        if (gamepad2.a) {
+        if (gamepad1.right_bumper) {
             onp();
         }
-        else if (gamepad2.x) {
+        else if (gamepad1.left_bumper) {
             onm();
-        } else if (gamepad2.y) {
-            HRS.setPosition(HSROpen);
-            HLS.setPosition(HSLOpen);
-        } else if (gamepad2.b) {
-            HRS.setPosition(HSRClose);
-            HLS.setPosition(HSLClose);
         }
         else {
             off();
+        }
+
+        if (gamepad1.y) {
+            HRS.setPosition(HSROpen);
+            HLS.setPosition(HSLOpen);
+            delay(1000);
+            HRS.setPosition(HSRClose);
+            HLS.setPosition(HSLClose);
+        } if (gamepad2.x) {
+            HRS.setPosition(HSRClose);
+            HLS.setPosition(HSLClose);
         }
     }
 

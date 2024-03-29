@@ -22,4 +22,13 @@ public class AutoPixels extends Module {
     public void PPOpen() {PP.setPosition(PPOPEN);}
     public void PPClose() {PP.setPosition(PPIDLE);}
 
+    public void tele() {
+        if ( gamepad1.a ) {
+            PPOpen();
+        }
+        if ( gamepad1.b ) {
+            PPClose();
+        }
+    }
+
 }

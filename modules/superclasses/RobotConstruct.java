@@ -88,6 +88,7 @@ public class RobotConstruct {
         grab.init_gamepad(gamepad1, gamepad2);
         hg.init_gamepad(gamepad1, gamepad2);
         led.init_gamepad(gamepad1, gamepad2);
+        ap.init_gamepad(gamepad1, gamepad2);
     }
 
 }

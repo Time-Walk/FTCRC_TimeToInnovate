@@ -16,7 +16,6 @@ public class Grab extends Module {
         LZ.setPower(-pw);
     }
     public void tele() {
-        setPower(gamepad2.right_trigger);
-        setPower(-gamepad2.left_trigger);
+        setPower(gamepad1.right_trigger-gamepad1.left_trigger);
     }
 }

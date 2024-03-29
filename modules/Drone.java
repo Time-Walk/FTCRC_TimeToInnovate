@@ -28,7 +28,6 @@ public class Drone extends Module {
         SM.setPosition(SMIDLE);
     }
     public void tele() {
-        if ( gamepad2.dpad_up ) { fly(); telemetry.addData("123", 123); telemetry.update();}
-        else if (gamepad2.dpad_down) {close();}
+        if ( gamepad1.dpad_up ) { fly(); telemetry.addData("123", 123); telemetry.update();}
     }
 }
