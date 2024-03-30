@@ -22,6 +22,8 @@ public class CameraOut extends Module {
     }
 
     public void openWithPipeline(OpenCvPipeline pipe, boolean isStreamToDash) {
+        telemetry.addData("camera", "started open");
+        telemetry.update();
         camera.setPipeline(pipe);
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
@@ -31,6 +33,8 @@ public class CameraOut extends Module {
                     FtcDashboard dash = FtcDashboard.getInstance();
                     dash.startCameraStream(camera, 30);
                 }
+                telemetry.addData("camera", "opened");
+                telemetry.update();
             }
 
             @Override

@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.modules.camera;
 
 import static org.opencv.core.Core.max;
 
+import com.acmerobotics.dashboard.config.Config;
+
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -11,6 +13,7 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvPipeline;
 
+@Config
 public class DetectionPipeline extends OpenCvPipeline {
 
     Telemetry telemetry;
@@ -21,18 +24,19 @@ public class DetectionPipeline extends OpenCvPipeline {
         RIGHT
     }
 
-    public int POINT_1_X_1 = 10;
-    public int POINT_1_Y_1 = 200;
-    public int POINT_1_X_2 = 210;
-    public int POINT_1_Y_2 = 470;
-    public int POINT_2_X_1 = 215;
-    public int POINT_2_Y_1 = 200;
-    public int POINT_2_X_2 = 425;
-    public int POINT_2_Y_2 = 470;
-    public int POINT_3_X_1 = 430;
-    public int POINT_3_Y_1 = 200;
-    public int POINT_3_X_2 = 640;
-    public int POINT_3_Y_2 = 470;
+    public static int POINT_1_X_1 = 10;
+    public static int POINT_1_Y_1 = 200;
+    public static int POINT_1_X_2 = 210;
+    public static int POINT_1_Y_2 = 470;
+    public static int POINT_2_X_1 = 215;
+    public static int POINT_2_Y_1 = 200;
+    public static int POINT_2_X_2 = 425;
+    public static int POINT_2_Y_2 = 470;
+    public static int POINT_3_X_1 = 430;
+    public static int POINT_3_Y_1 = 200;
+    public static int POINT_3_X_2 = 640;
+    public static
+    int POINT_3_Y_2 = 470;
 
     public String targetColor = "BLUE";
     int targetChannelId = 2;

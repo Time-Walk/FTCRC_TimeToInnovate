@@ -10,8 +10,8 @@ public class AutoPixels extends Module {
     Servo YP, PP;
     public static double YPIDLE = 0;
     public static double YPSTAND = 0;
-    public static double PPIDLE = 0;
-    public static double PPOPEN = 0;
+    public static double PPIDLE = .3;
+    public static double PPOPEN = .8;
     public void init() {
         YP = hwmp.get(Servo.class, "YP");
         PP = hwmp.get(Servo.class, "PP");

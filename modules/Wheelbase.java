@@ -30,15 +30,19 @@ public class Wheelbase extends Module {
         LB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         RB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         RB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        LF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        LF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void setMtZero() { setMtPower(0, 0, 0, 0); }
 
     public void tele() {
-        double rf = gamepad1.left_stick_y + gamepad1.left_stick_x + (gamepad1.right_stick_x * 0.6) - (gamepad1.left_trigger * 0.6) + (gamepad1.right_trigger * 0.6);
-        double rb = gamepad1.left_stick_y - gamepad1.left_stick_x + (gamepad1.right_stick_x * 0.6) - (gamepad1.left_trigger * 0.6) + (gamepad1.right_trigger * 0.6);
-        double lf = -gamepad1.left_stick_y + gamepad1.left_stick_x + (gamepad1.right_stick_x * 0.6) - (gamepad1.left_trigger * 0.6) + (gamepad1.right_trigger * 0.6);
-        double lb = -gamepad1.left_stick_y - gamepad1.left_stick_x + (gamepad1.right_stick_x * 0.6) - (gamepad1.left_trigger * 0.6) + (gamepad1.right_trigger * 0.6);
+        double rf = gamepad1.left_stick_y + gamepad1.left_stick_x + (gamepad1.right_stick_x * 0.6);
+        double rb = gamepad1.left_stick_y - gamepad1.left_stick_x + (gamepad1.right_stick_x * 0.6);
+        double lf = -gamepad1.left_stick_y + gamepad1.left_stick_x + (gamepad1.right_stick_x * 0.6);
+        double lb = -gamepad1.left_stick_y - gamepad1.left_stick_x + (gamepad1.right_stick_x * 0.6);
         setMtPower(lf, lb, rf, rb);
     }
 }

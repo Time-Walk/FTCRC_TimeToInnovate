@@ -73,9 +73,9 @@ public class RobotConstruct {
         hg.initFields(telemetry, L, hwmp);
         hg.init();
 
-        led = new NewNeon();
-        led.initFields(telemetry, L, hwmp);
-        led.init();
+        //led = new NewNeon();
+        //led.initFields(telemetry, L, hwmp);
+        //led.init();
 
         ap = new AutoPixels();
         ap.initFields(telemetry, L, hwmp);
@@ -87,7 +87,7 @@ public class RobotConstruct {
         sm.init_gamepad(gamepad1, gamepad2);
         grab.init_gamepad(gamepad1, gamepad2);
         hg.init_gamepad(gamepad1, gamepad2);
-        led.init_gamepad(gamepad1, gamepad2);
+        //led.init_gamepad(gamepad1, gamepad2);
         ap.init_gamepad(gamepad1, gamepad2);
     }
 

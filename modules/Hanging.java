@@ -23,6 +23,8 @@ public class Hanging extends Module {
         HL = hwmp.get(DcMotor.class, "HL");
         HRS = hwmp.get(Servo.class, "HRS");
         HLS = hwmp.get(Servo.class, "HLS");
+        HR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        HL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
     public void onp() {
         HR.setPower(1);
@@ -35,6 +37,10 @@ public class Hanging extends Module {
     public void off() {
         HR.setPower(0);
         HL.setPower(0);
+    }
+    public void powerServo() {
+        HRS.setPosition(HSRClose);
+        HLS.setPosition(HSLClose);
     }
     public void tele() {
         if (gamepad1.right_bumper) {
@@ -50,7 +56,7 @@ public class Hanging extends Module {
         if (gamepad1.y) {
             HRS.setPosition(HSROpen);
             HLS.setPosition(HSLOpen);
-            delay(1000);
+            delay(5000);
             HRS.setPosition(HSRClose);
             HLS.setPosition(HSLClose);
         } if (gamepad2.x) {

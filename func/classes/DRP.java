@@ -66,13 +66,11 @@ public class DRP {
                 else {
                     Ux = pdX.tick(XEr);
                 }
-                if ( Math.abs( targetX - XEr ) < minTargetErDist && Math.abs(XEr - pdX.ErLast) < minErSpeed ) {
-                    condX = true;
-                }
+                condX = Math.abs( targetX - XEr ) < minTargetErDist && Math.abs(XEr - pdX.ErLast) < minErSpeed;
             }
 
             if ( !condY ) {
-                double YEr = targetY + R.wb.LB.getCurrentPosition();
+                double YEr = targetY - R.wb.LB.getCurrentPosition();
                 if ( YEr > targetY / 2) {
                     double Rele = krAccel * Math.signum(YEr);
                     double P = kpAccel * Math.abs(targetY - YEr) * Math.signum(targetY);
@@ -81,9 +79,7 @@ public class DRP {
                 else {
                     Uy = pdY.tick(YEr);
                 }
-                if ( Math.abs( targetY - YEr ) < minTargetErDist && Math.abs(YEr - pdY.ErLast) < minErSpeed ) {
-                    condY = true;
-                }
+                condY = Math.abs( targetY - YEr ) < minTargetErDist && Math.abs(YEr - pdY.ErLast) < minErSpeed;
             }
 
             double ErRot = -R.imu.getAngle();
@@ -101,6 +97,10 @@ public class DRP {
             telemetry.addData("rf", R.wb.RF.getPower());
             telemetry.addData("rb", R.wb.RB.getPower());
             telemetry.addData("ErX", targetX + R.wb.RB.getCurrentPosition());
+            telemetry.addData("ErY", targetY - R.wb.LB.getCurrentPosition());
+            telemetry.addData("condX", condX);
+            telemetry.addData("condY", condY);
+            telemetry.addData("condSumm", condSumm);
             telemetry.update();
         }
 
