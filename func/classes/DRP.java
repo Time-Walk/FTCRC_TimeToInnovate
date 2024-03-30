@@ -20,15 +20,15 @@ public class DRP {
     PD pdX, pdY, pdRot;
     public static double kpXY = .005;
     public static double kdXY = .0005;
-    public static double kpRot = -.0032;
-    public static double kdRot = -.0484345;
+    public static double kpRot = -.01;
+    public static double kdRot = -.0584345;
     public static double krAccel = .079876543;
     public static double kpAccel = .00085;
     public static double minTargetErDist = 5;
     public static double minErSpeed = .5;
-    public static double maxRotationDelta = 100;
-    public void init(RobotConstruct R) {
-        this.R = R;
+    public static double maxRotationDelta = 1.5;
+    public void init(RobotConstruct R, LinearOpMode L) {
+        this.R = R; this.L = L;
         pdX = new PD();
         pdY = new PD();
         pdRot = new PD();
@@ -58,7 +58,8 @@ public class DRP {
 
             if ( !condX ) {
                 double XEr = targetX + R.wb.RB.getCurrentPosition();
-                if ( XEr > targetX / 2) {
+                if ( Math.abs(XEr) > Math.abs(targetX) / 2) {
+                    telemetry.addData("AAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAA");
                     double Rele = krAccel * Math.signum(XEr);
                     double P = kpAccel * Math.abs(targetX - XEr) * Math.signum(targetX);
                     Ux = Rele + P;
@@ -66,12 +67,12 @@ public class DRP {
                 else {
                     Ux = pdX.tick(XEr);
                 }
-                condX = Math.abs( targetX - XEr ) < minTargetErDist && Math.abs(XEr - pdX.ErLast) < minErSpeed;
+                condX = Math.abs( XEr ) < minTargetErDist && Math.abs(XEr - pdX.ErLast) < minErSpeed;
             }
 
             if ( !condY ) {
                 double YEr = targetY - R.wb.LB.getCurrentPosition();
-                if ( YEr > targetY / 2) {
+                if ( Math.abs(YEr) > Math.abs(targetY) / 2) {
                     double Rele = krAccel * Math.signum(YEr);
                     double P = kpAccel * Math.abs(targetY - YEr) * Math.signum(targetY);
                     Uy = Rele + P;
@@ -79,7 +80,7 @@ public class DRP {
                 else {
                     Uy = pdY.tick(YEr);
                 }
-                condY = Math.abs( targetY - YEr ) < minTargetErDist && Math.abs(YEr - pdY.ErLast) < minErSpeed;
+                condY = Math.abs( YEr ) < minTargetErDist && Math.abs(YEr - pdY.ErLast) < minErSpeed;
             }
 
             double ErRot = -R.imu.getAngle();
@@ -96,14 +97,20 @@ public class DRP {
             telemetry.addData("lb", R.wb.LB.getPower());
             telemetry.addData("rf", R.wb.RF.getPower());
             telemetry.addData("rb", R.wb.RB.getPower());
+            telemetry.addData("RB", -R.wb.RB.getCurrentPosition());
+            telemetry.addData("LB", R.wb.LB.getCurrentPosition());
             telemetry.addData("ErX", targetX + R.wb.RB.getCurrentPosition());
             telemetry.addData("ErY", targetY - R.wb.LB.getCurrentPosition());
+            telemetry.addData("targetX", targetX);
             telemetry.addData("condX", condX);
             telemetry.addData("condY", condY);
             telemetry.addData("condSumm", condSumm);
+            telemetry.addData("forCondXEr", Math.abs(  (targetX+R.wb.RB.getCurrentPosition()) ));
+            telemetry.addData("forCondXSpeed", Math.abs((targetX+R.wb.RB.getCurrentPosition()) - pdX.ErLast));
             telemetry.update();
         }
-
+        R.wb.setMtZero();
+        R.wb.delay(1000);
     }
 
 }

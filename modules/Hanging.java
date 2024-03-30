@@ -56,7 +56,7 @@ public class Hanging extends Module {
         if (gamepad1.y) {
             HRS.setPosition(HSROpen);
             HLS.setPosition(HSLOpen);
-            delay(5000);
+            delay(1000);
             HRS.setPosition(HSRClose);
             HLS.setPosition(HSLClose);
         } if (gamepad2.x) {

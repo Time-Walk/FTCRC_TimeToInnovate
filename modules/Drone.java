@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.modules.superclasses.Module;
 public class Drone extends Module {
     Servo SM, SMA;
     public static double SMFLY = 0.2;
-    public static double SMIDLE = 0.7;
+    public static double SMIDLE = 0.375;
     public static double SMAFLY = 0.2;
     public static double SMAIDLE = 0.7;
     @Override

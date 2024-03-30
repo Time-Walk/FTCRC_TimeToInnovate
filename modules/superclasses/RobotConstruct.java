@@ -72,6 +72,7 @@ public class RobotConstruct {
         hg = new Hanging();
         hg.initFields(telemetry, L, hwmp);
         hg.init();
+        hg.powerServo();
 
         //led = new NewNeon();
         //led.initFields(telemetry, L, hwmp);

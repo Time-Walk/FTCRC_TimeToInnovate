@@ -31,8 +31,7 @@ public class TestDrive extends LinearOpMode {
         RobotConstruct R = new RobotConstruct();
         R.init(telemetry, this, hardwareMap);
         DRP drp = new DRP();
-        drp.init(R);
-        R.hg.powerServo();
+        drp.init(R, this);
         waitForStart();
 
         //okay, let's go!

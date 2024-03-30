@@ -45,4 +45,10 @@ public class Wheelbase extends Module {
         double lb = -gamepad1.left_stick_y - gamepad1.left_stick_x + (gamepad1.right_stick_x * 0.6);
         setMtPower(lf, lb, rf, rb);
     }
+
+    public void timer(double lf, double lb, double rf, double rb, int millis) {
+        setMtPower(lf, lb, rf, rb);
+        delay(millis);
+        setMtZero();
+    }
 }
