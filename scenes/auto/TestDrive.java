@@ -35,7 +35,9 @@ public class TestDrive extends LinearOpMode {
         waitForStart();
 
         //okay, let's go!
-        drp.go(x, y);
+        drp.go(x, 0);
+        R.ap.delay(1000);
+        drp.go(0, y);
 
     }
 

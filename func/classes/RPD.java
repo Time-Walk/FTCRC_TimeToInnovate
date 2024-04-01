@@ -35,7 +35,7 @@ public class RPD {
     public void rotate(double degrees) {
         degrees = (degrees * (93.5/90));
         R.imu.init();
-        R.wb.resetEncoders();
+        R.wb.initEncoderAuto();
         while ( (Math.abs(degrees - R.imu.getAngle()) > ErTarget || Math.abs((degrees - R.imu.getAngle()) - pd.ErLast) > ErSpeedTarget) && L.opModeIsActive() ) {
             double U = pd.tick(degrees - R.imu.getAngle());
             double Rele = kr * Math.signum(degrees-R.imu.getAngle());

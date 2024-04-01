@@ -25,16 +25,24 @@ public class Wheelbase extends Module {
         RF.setPower(rf);
         RB.setPower(rb);
     }
-    public void resetEncoders() {
-        LB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        LB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        RB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        RB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    public void initEncoderTele(){
+        LB.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODERS);
+        LF.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODERS);
+        RF.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODERS);
+        RB.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODERS);
+    }
+    public void initEncoderAuto() {
         LF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         LF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        LB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        LB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         RF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         RF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
     }
+
 
     public void setMtZero() { setMtPower(0, 0, 0, 0); }
 

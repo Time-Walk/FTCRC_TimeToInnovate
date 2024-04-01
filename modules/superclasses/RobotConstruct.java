@@ -8,7 +8,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.func.classes.RPD;
-import org.firstinspires.ftc.teamcode.func.classes.RR;
 import org.firstinspires.ftc.teamcode.func.teleop.DriverHelper;
 import org.firstinspires.ftc.teamcode.modules.AutoPixels;
 import org.firstinspires.ftc.teamcode.modules.Drone;
@@ -28,7 +27,7 @@ public class RobotConstruct {
     public Neon neon; // переменная для светоленты
     public Grab grab;// переменная механихма захвата
     public IMU imu;//
-    //public RPD rpd;
+    public RPD rpd;
     //public RR rr;
     public Hanging hg;
     public NewNeon led;
@@ -52,10 +51,12 @@ public class RobotConstruct {
         wb = new Wheelbase();
         wb.initFields(telemetry, L, hwmp);
         wb.init();
+        wb.initEncoderTele(); // ОБЯЗАТЕЛЬНО!
 
         sm = new Drone();
         sm.initFields(telemetry, L, hwmp);
         sm.init();
+        sm.SMA.setPosition(sm.SMAPRE);
 
         //neon = new Neon();
         //neon.initFields(telemetry, L, hwmp);
@@ -72,7 +73,7 @@ public class RobotConstruct {
         hg = new Hanging();
         hg.initFields(telemetry, L, hwmp);
         hg.init();
-        hg.powerServo();
+        //hg.powerServo();
 
         //led = new NewNeon();
         //led.initFields(telemetry, L, hwmp);

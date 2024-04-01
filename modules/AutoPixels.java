@@ -24,10 +24,11 @@ public class AutoPixels extends Module {
 
     public void autoYellowStand() {
         int waitFor = 50;
-        int times = 70;
-        double perTime = (YPIDLE - YPSTAND) / times;
+        int times = 40;
+        YP.setPosition(YPSTAND + ((YPIDLE - YPSTAND) / 1.5));
+        double perTime = ((YPIDLE - YPSTAND) / 1.5) / times;
         for ( int i=0; i < times; i++ ) {
-            YP.setPosition(YPIDLE-(i*perTime));
+            YP.setPosition(YPSTAND+(i*perTime)+((YPIDLE-YPSTAND)/1.5));
             delay(waitFor);
         }
         delay(1000);
@@ -40,6 +41,9 @@ public class AutoPixels extends Module {
         }
         if ( gamepad1.b ) {
             PPClose();
+        }
+        if ( gamepad1.dpad_down ) {
+            autoYellowStand();
         }
     }
 

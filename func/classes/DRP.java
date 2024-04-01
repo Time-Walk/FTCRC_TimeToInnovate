@@ -20,13 +20,14 @@ public class DRP {
     PD pdX, pdY, pdRot;
     public static double kpXY = .005;
     public static double kdXY = .0005;
-    public static double kpRot = -.01;
-    public static double kdRot = -.0584345;
+    public static double kpRot = -.0075;
+    public static double kdRot = -.0384345;
     public static double krAccel = .079876543;
-    public static double kpAccel = .00085;
+    public static double kpAccel = .00045;
     public static double minTargetErDist = 5;
     public static double minErSpeed = .5;
-    public static double maxRotationDelta = 1.5;
+    public static double maxRotationDelta = .5;
+    public double smInTick = .0785375;
     public void init(RobotConstruct R, LinearOpMode L) {
         this.R = R; this.L = L;
         pdX = new PD();
@@ -45,9 +46,10 @@ public class DRP {
         telemetry.addData("rb", R.wb.RB.getPower());
         telemetry.update();
     }
+    public double toTicks(double cm) { return cm/smInTick; }
     public void go(double targetX, double targetY) {
         R.imu.init();
-        R.wb.resetEncoders();
+        R.wb.initEncoderAuto();
         boolean condSumm = false;
         boolean condX = false;
         boolean condY = false;
@@ -88,6 +90,13 @@ public class DRP {
 
             condSumm = condX && condY && ( Math.abs(ErRot) < maxRotationDelta );
 
+            if ( Ux > .35 ) { Ux = .35; }
+            else if ( Ux < -.35) { Ux = -.35; }
+            if ( Uy > .35 ) { Uy = .35; }
+            else if ( Uy < -.35 ) { Uy = -.35; }
+            if ( URot > .35 ) { URot = .35; }
+            else if ( URot < -.35 ) { URot = -.35; }
+
             R.wb.setMtPower(Ux + URot, Uy+URot, -Uy+URot, -Ux+URot);
 
             telemetry.addData("Ux", Ux);
@@ -110,7 +119,7 @@ public class DRP {
             telemetry.update();
         }
         R.wb.setMtZero();
-        R.wb.delay(1000);
+        R.wb.delay(500);
     }
 
 }

@@ -18,7 +18,7 @@ public class teleOp extends LinearOpMode {
         R.gamepad_init(gamepad1, gamepad2);
         //dh.initGamepad(gamepad1);
         waitForStart();
-        R.wb.resetEncoders();
+        R.wb.initEncoderTele();
         while(!isStopRequested()) {
             //dh.dh();
             telemetry.addData("LB", R.wb.LB.getCurrentPosition());

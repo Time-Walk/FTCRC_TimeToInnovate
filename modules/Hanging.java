@@ -12,10 +12,10 @@ import org.firstinspires.ftc.teamcode.modules.superclasses.Module;
 
 @Config
 public class Hanging extends Module {
-    public static double HSLOpen = 1;
-    public static double HSLClose = 0.7;
-    public static double HSRClose = .23456789;
-    public static double HSROpen = 0;
+    public static double HSLOpen = 0;
+    public static double HSLClose = 0.4;
+    public static double HSRClose = 0.15;
+    public static double HSROpen = 0.6;
     DcMotor HR, HL;
     Servo HRS, HLS;
     public void init() {
