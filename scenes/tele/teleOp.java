@@ -13,18 +13,17 @@ public class teleOp extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         RobotConstruct R = new RobotConstruct();
-        //DriverHelper dh = new DriverHelper();
+        DriverHelper dh = new DriverHelper();
         R.init(telemetry, this, hardwareMap);
         R.gamepad_init(gamepad1, gamepad2);
-        //dh.initGamepad(gamepad1);
+        dh.init(R, gamepad1);
         waitForStart();
         R.wb.initEncoderTele();
         while(!isStopRequested()) {
-            //dh.dh();
             telemetry.addData("LB", R.wb.LB.getCurrentPosition());
             telemetry.addData("RB", R.wb.RB.getCurrentPosition());
             telemetry.update();
-            R.wb.tele();
+            R.wb.tele(dh.tele());
             R.sm.tele();
             R.grab.tele();
             R.hg.tele();
