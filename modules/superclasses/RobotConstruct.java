@@ -44,44 +44,44 @@ public class RobotConstruct {
         this.L = L;
         this.hwmp = hwmp;
 
-        cameraOut = new CameraOut();
-        cameraOut.initFields(telemetry, L, hwmp);
-        cameraOut.init();
+        //cameraOut = new CameraOut();
+        //cameraOut.initFields(telemetry, L, hwmp);
+        //cameraOut.init();
 
-        wb = new Wheelbase();
-        wb.initFields(telemetry, L, hwmp);
-        wb.init();
-        wb.initEncoderTele(); // ОБЯЗАТЕЛЬНО!
+        //wb = new Wheelbase();
+        //wb.initFields(telemetry, L, hwmp);
+        //wb.init();
+        //wb.initEncoderTele(); // ОБЯЗАТЕЛЬНО!
 
-        sm = new Drone();
-        sm.initFields(telemetry, L, hwmp);
-        sm.init();
-        sm.SMA.setPosition(sm.SMAPRE);
+        //sm = new Drone();
+        //sm.initFields(telemetry, L, hwmp);
+        //sm.init();
+        //sm.SMA.setPosition(sm.SMAPRE);
 
         //neon = new Neon();
         //neon.initFields(telemetry, L, hwmp);
         //neon.init();
 
-        grab = new Grab();
-        grab.initFields(telemetry, L, hwmp);
-        grab.init();
+        //grab = new Grab();
+        //grab.initFields(telemetry, L, hwmp);
+        //grab.init();
 
-        imu = new IMU();
-        imu.initFields(telemetry, L, hwmp);
-        imu.init();
+        //imu = new IMU();
+        //imu.initFields(telemetry, L, hwmp);
+        //imu.init();
 
-        hg = new Hanging();
-        hg.initFields(telemetry, L, hwmp);
-        hg.init();
+        //hg = new Hanging();
+        //hg.initFields(telemetry, L, hwmp);
+        //hg.init();
         //hg.powerServo();
 
-        //led = new NewNeon();
-        //led.initFields(telemetry, L, hwmp);
-        //led.init();
+        led = new NewNeon();
+        led.initFields(telemetry, L, hwmp);
+        led.init();
 
-        ap = new AutoPixels();
-        ap.initFields(telemetry, L, hwmp);
-        ap.init();
+        //ap = new AutoPixels();
+        //ap.initFields(telemetry, L, hwmp);
+        //ap.init();
     }
 
     public void gamepad_init(Gamepad gamepad1, Gamepad gamepad2) {

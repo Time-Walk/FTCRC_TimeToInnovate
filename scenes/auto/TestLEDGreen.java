@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.modules.superclasses.RobotConstruct;
 
-@Autonomous(name="TestLED", group="")
-public class TestLED extends LinearOpMode {
+@Autonomous(name="TestLEDGreen", group="")
+public class TestLEDGreen extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         RobotConstruct R = new RobotConstruct();
@@ -15,13 +15,11 @@ public class TestLED extends LinearOpMode {
 
         //okay, let's go!
 
-        for (int i=0; i<R.led.LedL.length; i++) {
-            R.led.LedL[i][0] = 0;
-            R.led.LedL[i][1] = 0;
-            R.led.LedL[i][2] = 0;
+            R.led.LedL[23][0] = 10;
+            R.led.LedL[23][1] = 201;
+            R.led.LedL[23][2] = 11;
             R.led.send();
             R.led.delay(500);
-        }
 
     }
 

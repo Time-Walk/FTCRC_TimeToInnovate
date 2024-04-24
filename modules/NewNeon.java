@@ -22,74 +22,114 @@ public class NewNeon extends Module {
         telemetry.addData("led", "inited");
         telemetry.update();
         for (int i=0; i<LED_COUNT_L; i++) {
-            LedL[i][0] = 255;
-            LedL[i][1] = 255;
+            LedL[i][0] = 170;
+            LedL[i][1] = 128;
             LedL[i][2] = 255;
         }
         for (int i=0; i<LED_COUNT_R; i++) {
-            LedR[i][0] = 255;
-            LedR[i][1] = 255;
+            LedR[i][0] = 170;
+            LedR[i][1] = 128;
             LedR[i][2] = 255;
         }
         Sender.run();
+        _send = true;
     }
 
     public void send() { _send = true; }
 
+    public Thread setChnlTrue = new Thread() {
+        @Override
+        public void run() {
+            LEDL.setState(true);
+        }
+    };
+
+    public Thread setChnlFalse = new Thread() {
+        @Override
+        public void run() {
+            LEDL.setState(false);
+        }
+    };
+
     public Thread Sender = new Thread() {
         void setState(DigitalChannel channel, char state) {
             if ( state == '1' ) {
-                channel.setState(true);
+                //channel.setState(true);
+                //telemetry.addData("setToTrue1", System.nanoTime());
+                setChnlTrue.run();
                 advancedDelay(0, 800);
-                channel.setState(false);
+                //channel.setState(false);
+                //telemetry.addData("setToFalse1", System.nanoTime());
+                setChnlFalse.run();
                 advancedDelay(0, 450);
+                //channel.setState(true);
+                //telemetry.addData("realese1", System.nanoTime());
+                setChnlTrue.run();
             }
             else {
-                channel.setState(true);
+                //channel.setState(true);
+                //telemetry.addData("setToTrue0", System.nanoTime());
+                setChnlTrue.run();
                 advancedDelay(0, 400);
-                channel.setState(false);
+                //channel.setState(false);
+                //telemetry.addData("setToFalse0", System.nanoTime());
+                setChnlFalse.run();
                 advancedDelay(0, 850);
+                //channel.setState(true);
+                //telemetry.addData("realese0", System.nanoTime());
+                setChnlTrue.run();
             }
         }
         @Override
         public void run() {
             while ( !L.opModeIsActive() && !L.isStopRequested() ) {
-                if ( _send ) {
+                //telemetry.addData("_send", _send);
+                //telemetry.update();
+                if ( !_send ) {
+                    //telemetry.addData("sender", "sending");
+                    //telemetry.update();
                     _send = false;
                     for (int i=0; i<LedL.length; i++) {
-                        char[] GColorBased = Integer.toBinaryString(LedL[i][1]).toCharArray();
-                        char[] RColorBased = Integer.toBinaryString(LedL[i][0]).toCharArray();
-                        char[] BColorBased = Integer.toBinaryString(LedL[i][2]).toCharArray();
+                        String GColorBased = Integer.toBinaryString(LedL[i][1]);
+                        String RColorBased = Integer.toBinaryString(LedL[i][0]);
+                        String BColorBased = Integer.toBinaryString(LedL[i][2]);
 
-                        setState(LEDL, GColorBased[7]);
-                        setState(LEDL, GColorBased[6]);
-                        setState(LEDL, GColorBased[5]);
-                        setState(LEDL, GColorBased[4]);
-                        setState(LEDL, GColorBased[3]);
-                        setState(LEDL, GColorBased[2]);
-                        setState(LEDL, GColorBased[1]);
-                        setState(LEDL, GColorBased[0]);
-                        setState(LEDL, RColorBased[7]);
-                        setState(LEDL, RColorBased[6]);
-                        setState(LEDL, RColorBased[5]);
-                        setState(LEDL, RColorBased[4]);
-                        setState(LEDL, RColorBased[3]);
-                        setState(LEDL, RColorBased[2]);
-                        setState(LEDL, RColorBased[1]);
-                        setState(LEDL, RColorBased[0]);
-                        setState(LEDL, BColorBased[7]);
-                        setState(LEDL, BColorBased[6]);
-                        setState(LEDL, BColorBased[5]);
-                        setState(LEDL, BColorBased[4]);
-                        setState(LEDL, BColorBased[3]);
-                        setState(LEDL, BColorBased[2]);
-                        setState(LEDL, BColorBased[1]);
-                        setState(LEDL, BColorBased[0]);
+                        telemetry.addData("GColorBased", GColorBased);
+                        telemetry.addData("RColorBased", RColorBased);
+                        telemetry.addData("BcolorBased", BColorBased);
+                        //telemetry.update();
+                        setState(LEDL, GColorBased.charAt(7));
+                        setState(LEDL, GColorBased.charAt(6));
+                        setState(LEDL, GColorBased.charAt(5));
+                        setState(LEDL, GColorBased.charAt(4));
+                        setState(LEDL, GColorBased.charAt(3));
+                        setState(LEDL, GColorBased.charAt(2));
+                        setState(LEDL, GColorBased.charAt(1));
+                        setState(LEDL, GColorBased.charAt(0));
+                        setState(LEDL, RColorBased.charAt(7));
+                        setState(LEDL, RColorBased.charAt(6));
+                        setState(LEDL, RColorBased.charAt(5));
+                        setState(LEDL, RColorBased.charAt(4));
+                        setState(LEDL, RColorBased.charAt(3));
+                        setState(LEDL, RColorBased.charAt(2));
+                        setState(LEDL, RColorBased.charAt(1));
+                        setState(LEDL, RColorBased.charAt(0));
+                        setState(LEDL, BColorBased.charAt(7));
+                        setState(LEDL, BColorBased.charAt(6));
+                        setState(LEDL, BColorBased.charAt(5));
+                        setState(LEDL, BColorBased.charAt(4));
+                        setState(LEDL, BColorBased.charAt(3));
+                        setState(LEDL, BColorBased.charAt(2));
+                        setState(LEDL, BColorBased.charAt(1));
+                        setState(LEDL, BColorBased.charAt(0));
+
+                        telemetry.update();
+
 
                         advancedDelay(0, 50000);
 
                     }
-                    for (int i=0; i<LedR.length; i++) {
+                    /*for (int i=0; i<LedR.length; i++) {
                         char[] GColorBased = Integer.toBinaryString(LedR[i][1]).toCharArray();
                         char[] RColorBased = Integer.toBinaryString(LedR[i][0]).toCharArray();
                         char[] BColorBased = Integer.toBinaryString(LedR[i][2]).toCharArray();
@@ -121,7 +161,7 @@ public class NewNeon extends Module {
 
                         advancedDelay(0, 50000);
 
-                    }
+                    }*/
                     advancedDelay(0, 100000);
                 }
             }
