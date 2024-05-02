@@ -14,6 +14,7 @@ import org.firstinspires.ftc.teamcode.modules.Drone;
 import org.firstinspires.ftc.teamcode.modules.Grab;
 import org.firstinspires.ftc.teamcode.modules.Hanging;
 import org.firstinspires.ftc.teamcode.modules.IMU;
+import org.firstinspires.ftc.teamcode.modules.Lift;
 import org.firstinspires.ftc.teamcode.modules.Neon;
 import org.firstinspires.ftc.teamcode.modules.NewNeon;
 import org.firstinspires.ftc.teamcode.modules.Wheelbase;
@@ -37,6 +38,8 @@ public class RobotConstruct {
     public Gamepad gamepad1, gamepad2;
     public LinearOpMode L;
     public HardwareMap hwmp;
+
+    public Lift lift;
 
     public void init(Telemetry telemetry, LinearOpMode L, HardwareMap hwmp) {
 
@@ -75,22 +78,27 @@ public class RobotConstruct {
         //hg.init();
         //hg.powerServo();
 
-        led = new NewNeon();
-        led.initFields(telemetry, L, hwmp);
-        led.init();
+        //led = new NewNeon();
+        //led.initFields(telemetry, L, hwmp);
+        //led.init();
 
         //ap = new AutoPixels();
         //ap.initFields(telemetry, L, hwmp);
         //ap.init();
+
+        lift = new Lift();
+        lift.initFields(telemetry, L, hwmp);
+        lift.init();
     }
 
     public void gamepad_init(Gamepad gamepad1, Gamepad gamepad2) {
-        wb.init_gamepad(gamepad1, gamepad2);
-        sm.init_gamepad(gamepad1, gamepad2);
-        grab.init_gamepad(gamepad1, gamepad2);
-        hg.init_gamepad(gamepad1, gamepad2);
+        //wb.init_gamepad(gamepad1, gamepad2);
+        //sm.init_gamepad(gamepad1, gamepad2);
+        //grab.init_gamepad(gamepad1, gamepad2);
+        //hg.init_gamepad(gamepad1, gamepad2);
         //led.init_gamepad(gamepad1, gamepad2);
-        ap.init_gamepad(gamepad1, gamepad2);
+        //ap.init_gamepad(gamepad1, gamepad2);
+        lift.init_gamepad(gamepad1, gamepad2);
     }
 
 }
