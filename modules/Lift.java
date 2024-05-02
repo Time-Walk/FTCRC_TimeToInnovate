@@ -19,6 +19,8 @@ public class Lift extends Module {
         SM2 = hwmp.get(CRServo.class, "SM2");
         SM0 = hwmp.get(Servo.class, "SM0");
         SM1 = hwmp.get(Servo.class, "SM1");
+        LM.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        RM.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     public void tele() {
